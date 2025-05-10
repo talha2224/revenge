@@ -1,17 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { GiHamburgerMenu } from 'react-icons/gi';
-import Logo from '../assets/logo.svg';
 import frame70 from '../assets/frame70.png';
 import frame88 from '../assets/frame88.png';
 import HeaderImg from '../assets/image.png';
-import { PiCalendarDot, PiRankingBold } from "react-icons/pi";
-import { MdHomeFilled, MdOutlineChevronLeft, MdOutlineChevronRight } from 'react-icons/md';
-import { IoIosSettings } from 'react-icons/io';
+import { PiCalendarDot } from "react-icons/pi";
+import {MdOutlineChevronLeft, MdOutlineChevronRight } from 'react-icons/md';
+
 import {
     MdSearch,
     MdStar,
     MdChevronRight,
 } from 'react-icons/md';
+import Navbar from "../Navbar";
 const seasons = [
     { name: 'Regular Season', isStarred: true },
     { name: 'NBA Cup', isStarred: false },
@@ -34,28 +33,7 @@ const LandingPage = () => {
     return (
         <div className='w-screen h-screen bg-[#051427] overflow-y-auto p-5'>
 
-            <div className={`w-[100%] flex justify-between items-center flex-wrap`}>
-
-                <div className='flex items-center gap-x-2 md:gap-x-7 cursor-pointer'>
-                    <div className='w-[2rem] h-[2rem] bg-[#fff] flex lg:hidden justify-center items-center rounded-md text-black'>
-                        <GiHamburgerMenu className={`cursor-pointer md:mt-0`} onClick={() => toggleNav(!isNavOpen)} />
-                    </div>
-                    <img src={Logo} alt="" />
-                    <div className='flex items-center gap-x-1 md:gap-x-3 text-[#FB7F3F]'>
-                        <MdHomeFilled />
-                        <p>Home</p>
-                    </div>
-                    <div className='flex items-center gap-x-1 md:gap-x-3 text-[#fff]'>
-                        <PiRankingBold />
-                        <p>Favorites</p>
-                    </div>
-                </div>
-
-                <div className='flex items-center justify-center gap-x-4 text-white'>
-                    <IoIosSettings className='cursor-pointer' />
-                </div>
-
-            </div>
+            <Navbar/>
 
             <div className='flex justify-between items-center overflow-x-auto mt-5 gap-x-5'>
                 <div className='min-w-[18rem] max-w-[18rem] h-[3rem] flex justify-between items-center rounded-full bg-[#FB7F3F] text-[#fff] px-3'>

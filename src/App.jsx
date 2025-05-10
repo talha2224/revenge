@@ -1,11 +1,13 @@
 
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import React, { Suspense, lazy, useState, useEffect } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import LoaderGif from './assets/loader.gif';
 import Home from './pages/Home';
 import Details from './pages/Details';
+import FavoritesPage from './pages/Favorites';
+import Settings from './pages/Settings';
 
 
 function SuspenseWithDelay({ children, fallback, delay = 0, minDisplayTime = 2000 }) {
@@ -37,6 +39,8 @@ function App() {
 
             <Route path='/' element={<Home />} />
             <Route path='/details' element={<Details />} />
+            <Route path='/favorites' element={<FavoritesPage />} />
+            <Route path='/settings' element={<Settings />} />
 
 
           </Routes>

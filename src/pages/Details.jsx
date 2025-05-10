@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from 'react-icons/gi';
-import Logo from '../assets/logo.svg';
+import player from '../assets/player.png';
 import frame70 from '../assets/frame70.png';
 import { PiCalendarDot, PiRankingBold } from "react-icons/pi";
 import { IoIosSettings } from 'react-icons/io';
 import { useState } from "react";
 import { MdChevronRight, MdLocationPin, MdSearch, MdStar, MdHomeFilled, MdOutlineChevronLeft, MdOutlineChevronRight, MdOutlineSportsBasketball } from 'react-icons/md';
 import { FaClock, FaUsers } from "react-icons/fa";
+import Navbar from "../Navbar";
+import { FaHouse } from "react-icons/fa6";
 
 
 const seasons = [
@@ -28,32 +30,16 @@ const teams = [
 const Details = () => {
 
     const nav = useNavigate()
-    const [active, setActive] = useState(0)
+    const [active, setActive] = useState(0);
+    const [showTooltip, setShowTooltip] = useState(false);
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+
+
     return (
-        <div className='w-screen h-screen bg-[#051427] overflow-y-auto p-5'>
+        <div className='w-screen h-screen bg-[#051427] overflow-y-auto p-5 relative'>
 
-            <div className={`w-[100%] flex justify-between items-center flex-wrap`}>
+            <Navbar />
 
-                <div className='flex items-center gap-x-2 md:gap-x-7 cursor-pointer'>
-                    <div className='w-[2rem] h-[2rem] bg-[#fff] flex lg:hidden justify-center items-center rounded-md text-black'>
-                        <GiHamburgerMenu className={`cursor-pointer md:mt-0`} onClick={() => toggleNav(!isNavOpen)} />
-                    </div>
-                    <img src={Logo} alt="" />
-                    <div className='flex items-center gap-x-1 md:gap-x-3 text-[#FB7F3F]'>
-                        <MdHomeFilled />
-                        <p>Home</p>
-                    </div>
-                    <div className='flex items-center gap-x-1 md:gap-x-3 text-[#fff]'>
-                        <PiRankingBold />
-                        <p>Favorites</p>
-                    </div>
-                </div>
-
-                <div className='flex items-center justify-center gap-x-4 text-white'>
-                    <IoIosSettings className='cursor-pointer' />
-                </div>
-
-            </div>
 
             <div className='flex justify-between items-center overflow-x-auto mt-5 gap-x-5'>
                 <div className='min-w-[18rem] max-w-[18rem] h-[3rem] flex justify-between items-center rounded-full bg-[#FB7F3F] text-[#fff] px-3'>
@@ -301,7 +287,7 @@ const Details = () => {
                                 <p>Houston Rockets</p>
                             </div>
 
-                            <div className="overflow-x-auto mt-4">
+                            <div className="overflow-x-auto mt-4 ">
                                 <table className="min-w-full border border-[#696969]">
                                     <thead className="p-3">
                                         <tr className="border-b border-b-[#696969]">
@@ -322,14 +308,33 @@ const Details = () => {
                                             <th className="px-4 py-2 text-left text-white text-sm font-semibold">+/-</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="bg-[#222222]">
+                                    <tbody className="bg-[#222222] ">
                                         {
-                                            [1, 2, 3]?.map((i) => (
+                                            [1, 2, 3]?.map((i,index) => (
                                                 <tr className="border-b border-b-[#696969]" key={i}>
                                                     <td className="px-4 py-2 flex items-center gap-x-2 text-white text-sm">
-                                                        <img className="h-6 w-6 rounded-full" src={`https://i.pinimg.com/736x/90/6e/51/906e51825875defc35d0c15899ddd22d.jpg`} alt="S. Aldama" />
-                                                        <span className="text-nowrap">S. Aldama</span>
-                                                        <span className="ml-1 text-xs bg-red-500 text-white rounded px-1 text-nowrap">Center</span>
+                                                        <img
+                                                            className="h-6 w-6 rounded-full"
+                                                            src={`https://i.pinimg.com/736x/90/6e/51/906e51825875defc35d0c15899ddd22d.jpg`}
+                                                            alt="S. Aldama"
+                                                        />
+                                                        <div>
+                                                            <p className="text-nowrap">S. Aldama</p>
+                                                            <p className="text-nowrap text-sm text-gray-600">S. Aldama</p>
+                                                        </div>
+
+                                                        <div
+                                                            onMouseEnter={() => setHoveredIndex(index)}
+                                                            onMouseLeave={() => setHoveredIndex(null)}
+                                                            className="min-w-[1.5rem] min-h-[1.5rem] max-w-[1.5rem] max-h-[1.5rem] text-white rounded-md flex justify-center items-center bg-[#E82A41]"
+                                                        >
+                                                            <FaHouse size={13} />
+                                                            {hoveredIndex === index && (
+                                                                <div className=" z-10">
+                                                                    <Title />
+                                                                </div>
+                                                            )}
+                                                        </div>
                                                     </td>
                                                     <td className="px-4 py-2 text-white text-sm">36:53</td>
                                                     <td className="px-4 py-2 text-white text-sm">30</td>
@@ -411,7 +416,25 @@ const Details = () => {
             </div>
 
         </div >
+
     );
 };
+
+const Title = () => {
+    return (
+        <div className="bg-[#E82A41] text-white flex justify-center items-center flex-col p-3 z-10 absolute w-[20rem] shadow-xl rounded-md">
+            <img src={player} alt="" />
+            <p className="text-lg mt-1">D. Bane</p>
+            <p>Houston Rockets</p>
+            <div className="flex justify-center text-[#E82A41] items-center gap-x-5 bg-white rounded-md w-[100%] py-2">
+                <FaHouse className="text-[#E82A41]" size={20} />
+                <div>
+                    <p>Homecoming</p>
+                    <p className="text-black">Playing near to Home Town</p>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 export default Details;
