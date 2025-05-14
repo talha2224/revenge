@@ -8,6 +8,9 @@ import Home from './pages/Home';
 import Details from './pages/Details';
 import FavoritesPage from './pages/Favorites';
 import Settings from './pages/Settings';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Profile from './pages/Profile';
 
 
 function SuspenseWithDelay({ children, fallback, delay = 0, minDisplayTime = 2000 }) {
@@ -37,7 +40,10 @@ function App() {
 
           <Routes>
 
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/profile' element={<Profile/>} />
+            <Route path='/home' element={<Home />} />
             <Route path='/details' element={<Details />} />
             <Route path='/favorites' element={<FavoritesPage />} />
             <Route path='/settings' element={<Settings />} />
