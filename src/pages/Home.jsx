@@ -35,7 +35,7 @@ const LandingPage = () => {
 
             <Navbar/>
 
-            <div className='flex justify-between items-center overflow-x-auto mt-5 gap-x-5'>
+            <div className='hidden md:flex justify-between items-center overflow-x-auto mt-5 gap-x-5'>
                 <div className='min-w-[18rem] max-w-[18rem] h-[3rem] flex justify-between items-center rounded-full bg-[#FB7F3F] text-[#fff] px-3'>
                     <img className='h-[1.7rem] rounded-md' src="https://i.pinimg.com/736x/90/6e/51/906e51825875defc35d0c15899ddd22d.jpg" alt="" />
                     <p className=' text-sm'>National Basketball Association</p>
